@@ -11,8 +11,6 @@ Mi tienda online
 <Link to="/" className="text-white hover:text-blue-200 text-lg transition duration-300">Inicio</Link>
 <Link to="/usuarios" className="text-white hover:text-blue-200 text-lg transition duration-300">Usuarios</Link>
 <Link to="/productos" className="text-white hover:text-blue-200 text-lg transition duration-300">Productos</Link>
-<Link to="/ofertas" className="text-white hover:text-blue-200 text-lg transition duration-300">Ofertas</Link>
-<Link to="/contacto" className="text-white hover:text-blue-200 text-lg transition duration-300">Contacto</Link>
 </div>
 </div>
 </nav>

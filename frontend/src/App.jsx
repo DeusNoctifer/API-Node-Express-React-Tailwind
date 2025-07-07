@@ -2,10 +2,15 @@ import React, { useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom'; // Importa Routes, Route y
 Link
 import TarjetaProducto from './components/TarjetaProducto';
+import BotonPrimario from './components/BotonPrimario';
 import Navegacion from './components/Navegacion';
+
 import UserList from './components/UserList';
 import UserForm from './components/UserForm';
-import BotonPrimario from './components/BotonPrimario';
+import ProductosPage from "./components/ProductsPage";
+
+
+
 import './App.css';
 function App() {
     const [currentUser, setCurrentUser] = useState(null);
@@ -29,22 +34,13 @@ function App() {
             {/* Modifica la Navegación para usar Link en lugar de <a> */}
             <nav className="bg-blue-800 p-4 shadow-md w-full">
                 <div className="container mx-auto flex items-center justify-between">
-                    <Link to="/" className="text-white text-2xl font-bold hover:text-blue-200
-transition duration-300">
+                    <Link to="/" className="text-white text-2xl font-bold hover:text-blue-200 transition duration-300">
                         Mi tienda online
                     </Link>
                     <div className="flex space-x-6">
-                        <Link to="/" className="text-white hover:text-blue-200 text-lg transition
-duration-300">Inicio</Link>
-                        <Link to="/users" className="text-white hover:text-blue-200 text-lg
-transition duration-300">Usuarios</Link>
-
-                        <Link to="/productos" className="text-white hover:text-blue-200 text-lg
-transition duration-300">Productos</Link>
-                        <Link to="/ofertas" className="text-white hover:text-blue-200 text-lg
-transition duration-300">Ofertas</Link>
-                        <Link to="/contacto" className="text-white hover:text-blue-200 text-lg
-transition duration-300">Contacto</Link>
+                        <Link to="/" className="text-white hover:text-blue-200 text-lg transition duration-300">Inicio</Link>
+                        <Link to="/users" className="text-white hover:text-blue-200 text-lg transition duration-300">Usuarios</Link>
+                        <Link to="/productos" className="text-white hover:text-blue-200 text-lg transition duration-300">Productos</Link>
                     </div>
                 </div>
             </nav>
@@ -56,13 +52,11 @@ transition duration-300">Contacto</Link>
                                 tienda online</h1>
                             <h2 className='text-4xl font-bold text-gray-800 mt-12 mb-8'>Nuestros
                                 productos</h2>
-                            {/* Aquí iría el contenido de tu página de inicio, como TarjetaProducto
-*/}
+                            {/* Aquí iría el contenido de tu página de inicio, como TarjetaProducto*/}
                             {/* Por ahora, dejaremos un placeholder simple para el inicio */}
                             <p className='mt-12 text-gray-600'>Bienvenido a la tienda. ¡Explora
                                 nuestra selección!</p>
-                            {/* Si quieres que las tarjetas de producto estén en la raíz, ponlas
-aquí */}
+                            {/* Si quieres que las tarjetas de producto estén en la raíz, ponlasaquí */}
                         </>
                     } />
                     <Route path="/users" element={
@@ -93,14 +87,10 @@ aquí */}
                     {/* Puedes añadir más rutas si las necesitas, por ejemplo para productos,
 ofertas, etc. */}
                     <Route path="/productos" element={
-                        <>
-                            <TarjetaProducto
-                                nombre="Smartwatch X1"
-                                precio={200}
-                                imagenUrl={"https://placehold.co/200x200?text=SmartWatch"}
-                            />
-                        </>
-                    } />
+                        <ProductosPage />
+                        } 
+                    />
+
                     <Route path='/ofertas' element={
                         <>
                             <div className='w-full text-center'>
