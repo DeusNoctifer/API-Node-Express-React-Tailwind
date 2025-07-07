@@ -7,7 +7,9 @@ const cors = require('cors');
 app.use(cors());
 app.use(express.json());
 const userRoutes = require("./routes/userRoutes");
+const productRoutes = require("./routes/productRoutes");
 app.use("/users", userRoutes);
+app.use("/products", productRoutes);
 sequelize.sync()
     .then(() => {
         connectDB().then(() => {
