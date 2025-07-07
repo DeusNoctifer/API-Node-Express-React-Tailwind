@@ -25,42 +25,27 @@ exports.getUserById = async (req, res) => {
 };
 
 exports.createUser = async (req, res) => {
-    const { name, email, celphone } = req.body;
-    if (!name || !email || !celphone) {
-        return res.status(400).send("Name, email, and celphone are required");
-    }
-
     try {
-        const newUser = await User.create({ name, email, celphone });
-        res.status(201).json(newUser);
+        const { name, email, celphone } = req.body;
+        const user = await User.create({ name, email, celphone });
+        res.status(201).json(user);
     } catch (error) {
-        console.error("Error creating user:", error);
-        if (error.name === 'SequelizeUniqueConstraintError') {
-            return res.status(409).send("Email already registered");
-        }
-        res.status(500).send("Error creating user");
+        res.status(400).json({ message: error.message });
     }
 };
 
 exports.updateUser = async (req, res) => {
-    const userId = req.params.id;
-    const { name, email, celphone } = req.body;
-    if (!name || !email || !celphone) {
-        return res.status(400).send("Name, email, and celphone are required");
-    }
     try {
-        const user = await User.findByPk(userId);
-        if (!user) {
-            return res.status(404).send("User not found");
-        }
-        await user.update({ name, email, celphone });
-        res.json({ message: "User updated successfully" });
+        const { name, email, celphone } = req.body;
+        const user = await User.findByPk(req.params.id);
+        if (!user) return res.status(404).json({ message: "Usuario no encontrado" });
+        user.name = name;
+        user.email = email;
+        user.celphone = celphone;
+        await user.save();
+        res.json(user);
     } catch (error) {
-        console.error("Error updating user:", error);
-        if (error.name === 'SequelizeUniqueConstraintError') {
-            return res.status(409).send("Email already registered");
-        }
-        res.status(500).send("Error updating user");
+        res.status(400).json({ message: error.message });
     }
 };
 

@@ -3,7 +3,8 @@ require('dotenv').config();
 const express = require("express");
 const app = express();
 const { connectDB, sequelize } = require("./config/sequelizeConfig");
-
+const cors = require('cors');
+app.use(cors());
 app.use(express.json());
 const userRoutes = require("./routes/userRoutes");
 app.use("/users", userRoutes);
@@ -16,7 +17,6 @@ sequelize.sync()
         });
     })
     .catch(error => {
-        console.error("Error al sincronizar modelos o conectar la base de datos:",
-            error);
+        console.error("Error al sincronizar modelos o conectar la base de datos:", error);
         process.exit(1);
     });
